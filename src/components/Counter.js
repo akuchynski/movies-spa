@@ -24,11 +24,11 @@ class Counter extends React.Component {
     let { count } = this.state;
     return (
       <div className="counter-block">
-        <div class="counter">
+        <div className="counter">
           <h3>Counter:</h3>
           <h1>{count}</h1>
         </div>
-        <div class="buttons">
+        <div className="buttons">
           <button onClick={this.incrementCount}>+</button>
           <button onClick={this.decrementCount}>-</button>
         </div>

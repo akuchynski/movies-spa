@@ -6,9 +6,7 @@ class SearchForm extends React.Component {
       <form action="/search">
         <input type="text" name="test" />
         <select name="category">
-          <option value="" selected>
-            Category
-          </option>
+          <option value="all">All</option>
           <option value="action">Action</option>
           <option value="comedy">Comedy</option>
           <option value="drama">Drama</option>
