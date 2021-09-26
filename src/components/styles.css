@@ -1,5 +1,75 @@
-.App {
-    font-family: sans-serif;
-    text-align: center;
-  }
-  
+body {
+  margin: 0px;
+  background: #888888;
+  font-family: "Montserrat", Helvetica;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  pointer-events: none;
+  width: 100%;
+}
+
+.header {
+  background: url('./header-menu.png');
+  margin: 50px 0 10px;
+  height: 400px;
+  width: 1200px;
+}
+
+.header h1 {
+  color: white;
+  padding-left: 100px;
+  padding-top: 80px;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 300;
+}
+
+.content {
+  background-color: #232323;
+  height: 1000px;
+  width: 1200px;
+  margin-bottom: 70px;
+}
+
+.movie-list {
+  display: flex;
+  padding: 40px 25px;
+}
+
+.item {
+  padding: 0 30px;
+}
+
+.item .movie-info{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+	
+}
+
+.item .name {
+  padding-top: 10px;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  color: white;
+  width: 280px;
+}
+
+.item .genre {
+  padding-top: 10px;
+  font-size: 14px;
+  color: white;
+}
+
+.item .year {
+  padding-top: 10px;
+  color: white;
+}

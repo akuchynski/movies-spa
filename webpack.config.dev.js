@@ -6,7 +6,8 @@ module.exports = {
     entry: path.join(__dirname, "src", "index.js"),
     output: {
         filename: '[name].bundle.js',
-        path: path.resolve(__dirname, 'build')
+        path: path.resolve(__dirname, 'build'),
+        clean: true,
     },
     devtool: 'source-map',
     devServer: {
@@ -37,6 +38,10 @@ module.exports = {
                 test: /\.css$/i,
                 use: ["style-loader", "css-loader"]
             },
+            {
+                test: /\.(png|jpe?g|gif)$/i,
+                type: 'asset/resource'
+            }
         ]
     },
     resolve: {
