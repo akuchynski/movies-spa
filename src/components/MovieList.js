@@ -28,13 +28,13 @@ let movies = [
 export default function MovieList() {
     return (
         <div className="movie-list">
-            {movies.map((movie) => (
+            {movies.map(({ id, name, year, genre, image }) => (
                 <MovieItem
-                    key={movie.id}
-                    name={movie.name}
-                    year={movie.year}
-                    genre={movie.genre}
-                    image={movie.image}
+                    key={id}
+                    name={name}
+                    year={year}
+                    genre={genre}
+                    image={image}
                 />
             ))}
         </div>
