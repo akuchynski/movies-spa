@@ -16,7 +16,7 @@ body {
 }
 
 .header {
-  background: url('./header-menu.png');
+  background: url('../assets/images/header-menu.png');
   margin: 50px 0 10px;
   height: 400px;
   width: 1200px;

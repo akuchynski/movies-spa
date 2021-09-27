@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 export default function MovieItem({ name, year, genre, image}) {
     return (
         <div className="item">
-            <img className="movie-pic" src={require(`${image}`)}></img>
+            <img className="movie-pic" src={require("../assets/images/" + image)}></img>
             <div className="movie-info">
                 <div className="name">{name}</div>
                 <div className="year">{year}</div>
