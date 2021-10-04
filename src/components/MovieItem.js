@@ -1,24 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from 'prop-types'
 import MovieButton from '../assets/images/movie-menu-btn.png'
+import DeleteMovieModal from "./modal/DeleteMovie";
+import EditMovieModal from "./modal/EditMovie";
 
 export default function MovieItem({ name, year, genre, image }) {
+    const [isMenuActive, setMenuActive] = useState(false);
+    const [isEditActive, setEditActive] = useState(false);
+    const [isDeleteActive, setDeleteActive] = useState(false);
+
+    const handleMenuToggle = () => {
+        setMenuActive(!isMenuActive);
+    };
+
+    const handleEditModal = () => {
+        setEditActive(!isEditActive);
+    };
+
+    const handleDeleteModal = () => {
+        setDeleteActive(!isDeleteActive);
+    };
+
     return (
         <div className="item">
             <img className="movie-pic" src={require("../assets/images/" + image)}></img>
-            <div className="movie-btn">
+            <div className="movie-btn" onClick={handleMenuToggle}>
                 <img className="movie-btn-pic" src={MovieButton}></img>
                 <div className="menu-dot-1"></div>
                 <div className="menu-dot-2"></div>
                 <div className="menu-dot-3"></div>
             </div>
-            <div className="movie-menu">
-                <span class="close-small">&#x2715;</span>
-                <ul>
-                    <li><a href="#">EDIT</a></li>
-                    <li><a href="#">DELETE</a></li>
-                </ul>
-            </div>
+            {isMenuActive &&
+                <div className="movie-menu">
+                    <span className="close-small" onClick={handleMenuToggle}>&#x2715;</span>
+                    <ul>
+                        <li><a href="#" onClick={handleEditModal}>EDIT</a></li>
+                        <li><a href="#" onClick={handleDeleteModal}>DELETE</a></li>
+                    </ul>
+                </div>
+            }
+            {isDeleteActive && <DeleteMovieModal handleClose={handleDeleteModal} />}
+            {isEditActive && <EditMovieModal handleClose={handleEditModal} />}
             <div className="movie-info">
                 <div className="name">{name}</div>
                 <div className="year">{year}</div>

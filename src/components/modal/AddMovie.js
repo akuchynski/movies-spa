@@ -1,56 +1,44 @@
 import React from "react";
 
-class AddMovieForm extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { value: '' };
+const handleSubmit = (evt) => {
+    evt.preventDefault();
+    alert("Movie was added!")
+}
 
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
-
-    handleChange(event) {
-        this.setState({ value: event.target.value });
-    }
-
-    handleSubmit(event) {
-        alert('Movie was submitted: ' + this.state.value);
-        event.preventDefault();
-    }
-
-    render() {
-        return (
+const AddMovieModal = ({ handleClose }) => {
+    return (
+        <div className="modal">
             <div className="add-movie-modal">
-                <span class="close">&#x2715;</span>
+                <span className="close" onClick={handleClose}>&#x2715;</span>
                 <h2>ADD MOVIE</h2>
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={handleSubmit}>
                     <label className="modal-text">
                         TITLE
-                        <input type="text" id="title" value={this.state.value} onChange={this.handleChange} />
+                        <input type="text" id="title" value="" onChange="" />
                     </label>
                     <label className="modal-text-short">
                         RELEASE DATE
-                        <input type="text" value={this.state.value} onChange={this.handleChange} />
+                        <input type="text" value="" onChange="" />
                     </label>
                     <label className="modal-text">
                         MOVIE URL
-                        <input type="text" value={this.state.value} onChange={this.handleChange} />
+                        <input type="text" value="" onChange="" />
                     </label>
                     <label className="modal-text-short">
                         RATING
-                        <input type="text" value={this.state.value} onChange={this.handleChange} />
+                        <input type="text" value="" onChange="" />
                     </label>
                     <label className="modal-text">
                         GENRE
-                        <input type="text" value={this.state.value} onChange={this.handleChange} />
+                        <input type="text" value="" onChange="" />
                     </label>
                     <label className="modal-text-short">
                         RUNTIME
-                        <input type="text" value={this.state.value} onChange={this.handleChange} />
+                        <input type="text" value="" onChange="" />
                     </label>
                     <label className="modal-textarea">
                         OVERVIEW
-                        <input type="textarea" value={this.state.value} onChange={this.handleChange} />
+                        <input type="textarea" value="" onChange="" />
                     </label>
                     <div className="modal-buttons">
                         <button className="submit-button">SUBMIT</button>
@@ -58,8 +46,8 @@ class AddMovieForm extends React.Component {
                     </div>
                 </form>
             </div>
-        );
-    }
-}
+        </div>
+    );
+};
 
-export default AddMovieForm;
+export default AddMovieModal;

@@ -7,7 +7,6 @@ import ModalContainer from "./modal/ModalContainer";
 export default function App() {
   return (
     <div className="main-container">
-      <ModalContainer />
       <HeaderMenu />
       <Content />
     </div>
