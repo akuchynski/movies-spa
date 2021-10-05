@@ -1,14 +1,31 @@
-import React from "react";
-
-const handleSubmit = (evt) => {
-    evt.preventDefault();
-    alert("Success!")
-}
+import React, { useRef, useEffect } from "react";
 
 export const MovieModal = ({ handleClose, title }) => {
+
+    const ref = useRef()
+
+    useEffect(() => {
+        const checkClick = e => {
+            if (ref.current && !ref.current.contains(e.target)) {
+                handleClose()
+            }
+        }
+
+        document.addEventListener("mousedown", checkClick)
+
+        return () => {
+            document.removeEventListener("mousedown", checkClick)
+        }
+    })
+
+    const handleSubmit = (evt) => {
+        evt.preventDefault();
+        alert("Success!")
+    }
+
     return (
         <div className="modal">
-            <div className="add-movie-modal">
+            <div className="add-movie-modal" ref={ref}>
                 <span className="close" onClick={handleClose}>&#x2715;</span>
                 <h2>{title}</h2>
                 <form onSubmit={handleSubmit}>
