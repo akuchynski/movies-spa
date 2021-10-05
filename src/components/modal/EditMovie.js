@@ -5,7 +5,7 @@ const handleSubmit = (evt) => {
     alert("Movie was modified!")
 }
 
-const EditMovieModal = ({ handleClose }) => {
+export const EditMovieModal = ({ handleClose }) => {
     return (
         <div className="modal">
             <div className="add-movie-modal">
@@ -49,5 +49,3 @@ const EditMovieModal = ({ handleClose }) => {
         </div>
     );
 };
-
-export default EditMovieModal;

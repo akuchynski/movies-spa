@@ -5,7 +5,7 @@ const handleSubmit = (evt) => {
     alert("Movie was added!")
 }
 
-const AddMovieModal = ({ handleClose }) => {
+export const AddMovieModal = ({ handleClose }) => {
     return (
         <div className="modal">
             <div className="add-movie-modal">
@@ -49,5 +49,3 @@ const AddMovieModal = ({ handleClose }) => {
         </div>
     );
 };
-
-export default AddMovieModal;

@@ -210,7 +210,6 @@ body {
 }
 
 .modal {
-  /* display: none; */
   display: block;
   position: fixed;
   z-index: 1;
@@ -225,7 +224,6 @@ body {
 }
 
 .add-movie-modal {
-  /* display: none; */
   background-color: var(--dark-grey-color);
   margin: auto;
   width: 976px;
@@ -234,7 +232,6 @@ body {
 }
 
 .delete-movie-modal {
-  /* display: none; */
   background-color: var(--dark-grey-color);
   margin: auto;
   width: 600px;
@@ -326,6 +323,7 @@ button {
   height: 57px;
   font-size: 20px;
   border-radius: 4px;
+  cursor: pointer;
 }
 
 .reset-button {

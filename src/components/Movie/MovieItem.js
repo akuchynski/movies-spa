@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import PropTypes from 'prop-types'
-import MovieButton from '../assets/images/movie-menu-btn.png'
-import DeleteMovieModal from "./modal/DeleteMovie";
-import EditMovieModal from "./modal/EditMovie";
+import PropTypes from 'prop-types';
+import { DeleteMovieModal } from "../Modal/DeleteMovie";
+import { EditMovieModal } from "../Modal/EditMovie";
+import MovieButton from '../../assets/images/movie-menu-btn.png';
 
-export default function MovieItem({ name, year, genre, image }) {
+export const MovieItem = ({ name, year, genre, image }) => {
     const [isMenuActive, setMenuActive] = useState(false);
     const [isEditActive, setEditActive] = useState(false);
     const [isDeleteActive, setDeleteActive] = useState(false);
@@ -23,12 +23,12 @@ export default function MovieItem({ name, year, genre, image }) {
 
     return (
         <div className="item">
-            <img className="movie-pic" src={require("../assets/images/" + image)}></img>
+            <img className="movie-pic" src={require("../../assets/images/" + image)}></img>
             <div className="movie-btn" onClick={handleMenuToggle}>
-                <img className="movie-btn-pic" src={MovieButton}></img>
-                <div className="menu-dot-1"></div>
-                <div className="menu-dot-2"></div>
-                <div className="menu-dot-3"></div>
+                <img className="movie-btn-pic" src={MovieButton} />
+                <div className="menu-dot-1" />
+                <div className="menu-dot-2" />
+                <div className="menu-dot-3" />
             </div>
             {isMenuActive &&
                 <div className="movie-menu">
