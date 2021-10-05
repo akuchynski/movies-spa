@@ -2,43 +2,43 @@ import React from "react";
 
 const handleSubmit = (evt) => {
     evt.preventDefault();
-    alert("Movie was added!")
+    alert("Success!")
 }
 
-export const AddMovieModal = ({ handleClose }) => {
+export const MovieModal = ({ handleClose, title }) => {
     return (
         <div className="modal">
             <div className="add-movie-modal">
                 <span className="close" onClick={handleClose}>&#x2715;</span>
-                <h2>ADD MOVIE</h2>
+                <h2>{title}</h2>
                 <form onSubmit={handleSubmit}>
                     <label className="modal-text">
                         TITLE
-                        <input type="text" id="title" value="" onChange="" />
+                        <input type="text" id="title" />
                     </label>
                     <label className="modal-text-short">
                         RELEASE DATE
-                        <input type="text" value="" onChange="" />
+                        <input type="text" />
                     </label>
                     <label className="modal-text">
                         MOVIE URL
-                        <input type="text" value="" onChange="" />
+                        <input type="text" />
                     </label>
                     <label className="modal-text-short">
                         RATING
-                        <input type="text" value="" onChange="" />
+                        <input type="text" />
                     </label>
                     <label className="modal-text">
                         GENRE
-                        <input type="text" value="" onChange="" />
+                        <input type="text" />
                     </label>
                     <label className="modal-text-short">
                         RUNTIME
-                        <input type="text" value="" onChange="" />
+                        <input type="text" />
                     </label>
                     <label className="modal-textarea">
                         OVERVIEW
-                        <input type="textarea" value="" onChange="" />
+                        <input type="textarea" />
                     </label>
                     <div className="modal-buttons">
                         <button className="submit-button">SUBMIT</button>

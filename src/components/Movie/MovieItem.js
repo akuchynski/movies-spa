@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from 'prop-types';
 import { DeleteMovieModal } from "../Modal/DeleteMovie";
-import { EditMovieModal } from "../Modal/EditMovie";
+import { MovieModal } from "../Modal/MovieModal";
 import MovieButton from '../../assets/images/movie-menu-btn.png';
 
 export const MovieItem = ({ name, year, genre, image }) => {
@@ -40,7 +40,7 @@ export const MovieItem = ({ name, year, genre, image }) => {
                 </div>
             }
             {isDeleteActive && <DeleteMovieModal handleClose={handleDeleteModal} />}
-            {isEditActive && <EditMovieModal handleClose={handleEditModal} />}
+            {isEditActive && <MovieModal handleClose={handleEditModal} title={"EDIT MOVIE"} />}
             <div className="movie-info">
                 <div className="name">{name}</div>
                 <div className="year">{year}</div>
