@@ -1,6 +1,7 @@
 :root {
   --white: #ffffff;
   --black: #000000;
+  --grey: #535353;;
   --main-bg-color: #888888;
   --dark-grey-color: #232323;
   --soft-red-color: #F65261;
@@ -339,4 +340,79 @@ button {
   border-style: none;
   color: var(--white);
   background-color: var(--soft-red-color);
+}
+
+.filter {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.genre-filter ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.genre-filter li {
+  float: left;
+}
+
+.genre-filter li a {
+  display: block;
+  color: var(--white);
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.genre-filter li a:hover:not(.active) {
+  background-color: var(--black);
+}
+
+.active {
+  background-color: var(--soft-red-color);
+}
+
+.drop-btn {
+  color: var(--white);
+  background-color: transparent;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.sort {
+  color: var(--grey);
+}
+
+.date-filter {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: var(--black);
+  min-width: 160px;
+  right: 20px;
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: var(--white);
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: var(--soft-red-color)
+}
+
+.date-filter:hover .dropdown-content {
+  display: block;
 }
