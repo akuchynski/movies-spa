@@ -39,13 +39,13 @@ export const MovieItem = ({ name, year, genre, image }) => {
                     </ul>
                 </div>
             }
-            {isDeleteActive && <DeleteMovieModal handleClose={handleDeleteModal} />}
-            {isEditActive && <MovieModal handleClose={handleEditModal} title={"EDIT MOVIE"} />}
             <div className="movie-info">
                 <div className="name">{name}</div>
                 <div className="year">{year}</div>
                 <div className="genre">{genre}</div>
             </div>
+            {isDeleteActive && <DeleteMovieModal handleClose={handleDeleteModal} />}
+            {isEditActive && <MovieModal handleClose={handleEditModal} title={"EDIT MOVIE"} />}
         </div>
     )
 }

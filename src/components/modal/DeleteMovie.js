@@ -2,19 +2,19 @@ import React, { useRef, useEffect } from "react";
 
 export const DeleteMovieModal = ({ handleClose }) => {
 
-    const ref = useRef()
+    const ref = useRef();
 
     useEffect(() => {
         const checkClick = e => {
             if (ref.current && !ref.current.contains(e.target)) {
-                handleClose()
+                handleClose();
             }
         }
 
-        document.addEventListener("mousedown", checkClick)
+        document.addEventListener("mousedown", checkClick);
 
         return () => {
-            document.removeEventListener("mousedown", checkClick)
+            document.removeEventListener("mousedown", checkClick);
         }
     })
 
