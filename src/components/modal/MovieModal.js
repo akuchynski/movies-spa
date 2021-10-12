@@ -1,22 +1,9 @@
-import React, { useRef, useEffect } from "react";
+import React from "react";
+import { useClickListener } from "../../hooks/useClickListener";
 
 export const MovieModal = ({ handleClose, title }) => {
 
-    const ref = useRef();
-
-    useEffect(() => {
-        const checkClick = e => {
-            if (ref.current && !ref.current.contains(e.target)) {
-                handleClose();
-            }
-        }
-
-        document.addEventListener("mousedown", checkClick);
-
-        return () => {
-            document.removeEventListener("mousedown", checkClick);
-        }
-    })
+    const ref = useClickListener();
 
     const handleSubmit = (evt) => {
         evt.preventDefault();

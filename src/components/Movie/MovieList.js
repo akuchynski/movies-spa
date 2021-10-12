@@ -8,6 +8,7 @@ export const MovieList = () => {
             {movies.map(({ id, name, year, genre, image }) => (
                 <MovieItem
                     key={id}
+                    movieId={id}
                     name={name}
                     year={year}
                     genre={genre}

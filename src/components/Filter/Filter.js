@@ -12,7 +12,7 @@ export const Filter = () => {
                     <li><a href="#">CRIME</a></li>
                 </ul>
             </div>
-            <div class="date-filter">
+            <div className="date-filter">
                 <span className="sort">SORT BY</span>
                 <button className="drop-btn">RELEASE DATE</button>
                 <div className="dropdown-content">
