@@ -1,8 +1,8 @@
 import React from "react";
-import MovieItem from "./MovieItem";
-import movies from "../utils/setMockData";
+import { MovieItem } from "./MovieItem";
+import { movies } from "../../utils/setMockData";
 
-export default function MovieList() {
+export const MovieList = () => {
     return (
         <div className="movie-list">
             {movies.map(({ id, name, year, genre, image }) => (

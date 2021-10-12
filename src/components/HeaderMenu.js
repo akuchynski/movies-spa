@@ -1,9 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
+import { MovieModal } from "./Modal/MovieModal";
 
-export default function HeaderMenu() {
+export const HeaderMenu = () => {
+    const [isAddActive, setAddActive] = useState(false);
+
+    const handleAddModal = () => {
+        setAddActive(!isAddActive);
+    };
+
     return (
         <div className="header">
-            <h1>FIND YOUR MOVIE</h1>
+            <div className="logo">movie
+                <span>roulette</span>
+            </div>
+            <button className="add-button" onClick={handleAddModal}>+ ADD MOVIE</button>
+            <div className="search">
+                <h1>FIND YOUR MOVIE</h1>
+                <input type="text" placeholder="What do you want to watch?" />
+                <button className="search-button">SEARCH</button>
+            </div>
+            {isAddActive && <MovieModal handleClose={handleAddModal} title={"ADD MOVIE"} />}
         </div>
     )
 }

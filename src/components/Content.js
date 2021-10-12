@@ -1,13 +1,12 @@
 import React from "react";
-import ErrorBoundary from "./ErrorBoundary";
-import MovieList from "./MovieList";
+import { MovieList } from "./Movie/MovieList";
+import { Filter } from "./Filter/Filter";
 
-export default function Content() {
+export const Content = () => {
     return (
         <div className="content">
-            <ErrorBoundary>
-                <MovieList />
-            </ErrorBoundary>
+            <Filter />
+            <MovieList />
         </div>
     )
 }

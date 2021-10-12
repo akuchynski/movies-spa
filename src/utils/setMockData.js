@@ -1,4 +1,4 @@
-const movies = [
+export const movies = [
     {
         id: 1111,
         name: 'Pulp Fiction',
@@ -21,5 +21,3 @@ const movies = [
         image: 'movie3.png'
     },
 ]
-
-export default movies;
