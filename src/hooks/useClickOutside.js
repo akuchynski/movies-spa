@@ -1,6 +1,6 @@
 import { useRef, useEffect } from "react";
 
-export const useClickListener = () => {
+export const useClickOutside = (handleClose) => {
 
   const ref = useRef();
 
@@ -11,10 +11,10 @@ export const useClickListener = () => {
       }
     }
 
-    document.addEventListener("mousedown", checkClick);
+    document.addEventListener("click", checkClick);
 
     return () => {
-      document.removeEventListener("mousedown", checkClick);
+      document.removeEventListener("click", checkClick);
     }
   })
 

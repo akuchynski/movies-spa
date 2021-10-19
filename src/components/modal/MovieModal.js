@@ -1,9 +1,9 @@
 import React from "react";
-import { useClickListener } from "../../hooks/useClickListener";
+import { useClickOutside } from "../../hooks/useClickOutside";
 
 export const MovieModal = ({ handleClose, title }) => {
 
-    const ref = useClickListener();
+    const ref = useClickOutside(handleClose);
 
     const handleSubmit = (evt) => {
         evt.preventDefault();

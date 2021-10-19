@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { DeleteMovieModal } from "../Modal/DeleteMovie";
 import { MovieModal } from "../Modal/MovieModal";
 import { AppContext } from "../App";
+import { useClickOutside } from "../../hooks/useClickOutside";
 import MovieButton from '../../assets/images/movie-menu-btn.png';
 
 export const MovieItem = ({ movieId, name, year, genre, image }) => {
@@ -25,6 +26,8 @@ export const MovieItem = ({ movieId, name, year, genre, image }) => {
         setDeleteActive(!isDeleteActive);
     };
 
+    const ref = useClickOutside(handleMenuToggle);
+
     return (
         <div className="item">
             <img className="movie-pic" src={require("../../assets/images/" + image)} onClick={() => handleMovieId(movieId)}></img>
@@ -35,7 +38,7 @@ export const MovieItem = ({ movieId, name, year, genre, image }) => {
                 <div className="menu-dot-3" />
             </div>
             {isMenuActive &&
-                <div className="movie-menu">
+                <div className="movie-menu" ref={ref}>
                     <span className="close-small" onClick={handleMenuToggle}>&#x2715;</span>
                     <ul>
                         <li><a href="#" onClick={handleEditModal}>EDIT</a></li>

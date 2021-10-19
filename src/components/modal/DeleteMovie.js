@@ -1,9 +1,9 @@
 import React from "react";
-import { useClickListener } from "../../hooks/useClickListener";
+import { useClickOutside } from "../../hooks/useClickOutside";
 
 export const DeleteMovieModal = ({ handleClose }) => {
 
-    const ref = useClickListener();
+    const ref = useClickOutside(handleClose);
 
     return (
         <div className="modal">
