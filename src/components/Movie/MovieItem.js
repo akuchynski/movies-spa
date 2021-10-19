@@ -1,13 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import PropTypes from 'prop-types';
 import { DeleteMovieModal } from "../Modal/DeleteMovie";
 import { MovieModal } from "../Modal/MovieModal";
+import { AppContext } from "../App";
+import { useClickOutside } from "../../hooks/useClickOutside";
 import MovieButton from '../../assets/images/movie-menu-btn.png';
 
-export const MovieItem = ({ name, year, genre, image }) => {
+export const MovieItem = ({ movieId, name, year, genre, image }) => {
     const [isMenuActive, setMenuActive] = useState(false);
     const [isEditActive, setEditActive] = useState(false);
     const [isDeleteActive, setDeleteActive] = useState(false);
+
+    const { movieItem } = useContext(AppContext);
+    const [movie, handleMovieId] = movieItem;
 
     const handleMenuToggle = () => {
         setMenuActive(!isMenuActive);
@@ -21,9 +26,11 @@ export const MovieItem = ({ name, year, genre, image }) => {
         setDeleteActive(!isDeleteActive);
     };
 
+    const ref = useClickOutside(handleMenuToggle);
+
     return (
         <div className="item">
-            <img className="movie-pic" src={require("../../assets/images/" + image)}></img>
+            <img className="movie-pic" src={require("../../assets/images/" + image)} onClick={() => handleMovieId(movieId)}></img>
             <div className="movie-btn" onClick={handleMenuToggle}>
                 <img className="movie-btn-pic" src={MovieButton} />
                 <div className="menu-dot-1" />
@@ -31,7 +38,7 @@ export const MovieItem = ({ name, year, genre, image }) => {
                 <div className="menu-dot-3" />
             </div>
             {isMenuActive &&
-                <div className="movie-menu">
+                <div className="movie-menu" ref={ref}>
                     <span className="close-small" onClick={handleMenuToggle}>&#x2715;</span>
                     <ul>
                         <li><a href="#" onClick={handleEditModal}>EDIT</a></li>
