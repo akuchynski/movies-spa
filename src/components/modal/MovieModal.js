@@ -8,7 +8,7 @@ export const MovieModal = ({ handleClose, title }) => {
     const handleSubmit = (evt) => {
         evt.preventDefault();
         alert("Success!");
-    }
+    };
 
     return (
         <div className="modal">

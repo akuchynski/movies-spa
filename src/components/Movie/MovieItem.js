@@ -1,18 +1,20 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { getMovieById } from "../../store/thunks";
+import { useClickOutside } from "../../hooks/useClickOutside";
 import PropTypes from 'prop-types';
 import { DeleteMovieModal } from "../Modal/DeleteMovie";
 import { MovieModal } from "../Modal/MovieModal";
-import { AppContext } from "../App";
-import { useClickOutside } from "../../hooks/useClickOutside";
 import MovieButton from '../../assets/images/movie-menu-btn.png';
 
-export const MovieItem = ({ movieId, name, year, genre, image }) => {
+export const MovieItem = ({ movieId, title, release_date, genres, poster_path }) => {
+
+    const dispatch = useDispatch();
+    const loadMovieDetails = () => dispatch(getMovieById(movieId));
+
     const [isMenuActive, setMenuActive] = useState(false);
     const [isEditActive, setEditActive] = useState(false);
     const [isDeleteActive, setDeleteActive] = useState(false);
-
-    const { movieItem } = useContext(AppContext);
-    const [movie, handleMovieId] = movieItem;
 
     const handleMenuToggle = () => {
         setMenuActive(!isMenuActive);
@@ -30,7 +32,7 @@ export const MovieItem = ({ movieId, name, year, genre, image }) => {
 
     return (
         <div className="item">
-            <img className="movie-pic" src={require("../../assets/images/" + image)} onClick={() => handleMovieId(movieId)}></img>
+            <img className="movie-pic" src={poster_path} onClick={loadMovieDetails}></img>
             <div className="movie-btn" onClick={handleMenuToggle}>
                 <img className="movie-btn-pic" src={MovieButton} />
                 <div className="menu-dot-1" />
@@ -47,25 +49,24 @@ export const MovieItem = ({ movieId, name, year, genre, image }) => {
                 </div>
             }
             <div className="movie-info">
-                <div className="name">{name}</div>
-                <div className="year">{year}</div>
-                <div className="genre">{genre}</div>
+                <div className="name">{title}</div>
+                <div className="year">{release_date.slice(0, 4)}</div>
+                <div className="genre">{genres.join(', ')}</div>
             </div>
             {isDeleteActive && <DeleteMovieModal handleClose={handleDeleteModal} />}
             {isEditActive && <MovieModal handleClose={handleEditModal} title={"EDIT MOVIE"} />}
         </div>
-    )
-}
+    );
+};
 
 MovieItem.propTypes = {
-    name: PropTypes.string.isRequired,
-    year: PropTypes.number.isRequired,
-    genre: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-}
+    title: PropTypes.string.isRequired,
+    release_date: PropTypes.string.isRequired,
+    genres: PropTypes.array.isRequired,
+};
 
 MovieItem.defaultProps = {
-    name: 'Empty name',
-    year: 0,
-    genre: 'Empty genre',
-}
+    title: 'Empty name',
+    release_date: 'Empty date',
+    genres: [],
+};

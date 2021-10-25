@@ -191,23 +191,33 @@ body {
 
 .content {
   background-color: var(--dark-grey-color);
-  height: 1000px;
   width: 1200px;
   margin-bottom: 70px;
 }
 
 .movie-list {
   display: flex;
+  flex-wrap: wrap;
   padding: 40px 25px;
 }
 
+.movie-list h3 {
+  color: var(--white);
+}
+
 .item {
-  padding: 0 30px;
+  padding: 0 30px 20px;
+  width: 322px;
   position: relative;
 }
 
-.item img{
+.item img {
   cursor: pointer;
+}
+
+.movie-pic {
+  width: 322px;
+  height: 455px;
 }
 
 .item .movie-info {

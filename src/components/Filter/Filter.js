@@ -1,26 +1,31 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { getMoviesByDate, getMoviesByRating } from "../../store/thunks";
+import { FilterLink } from './FilterLink';
 
 export const Filter = () => {
+
+    const genres = ['ALL', 'DOCUMENTARY', 'COMEDY', 'HORROR', 'CRIME'];
+
+    const dispatch = useDispatch();
+    const loadByDate = () => dispatch(getMoviesByDate());
+    const loadByRating = () => dispatch(getMoviesByRating());
+
     return (
         <div className="filter">
             <div className="genre-filter">
                 <ul>
-                    <li><a className="active" href="#">ALL</a></li>
-                    <li><a href="#">DOCUMENTARY</a></li>
-                    <li><a href="#">COMEDY</a></li>
-                    <li><a href="#">HORROR</a></li>
-                    <li><a href="#">CRIME</a></li>
+                    {genres.map((genre) => (<FilterLink key={genre} genre={genre} />))}
                 </ul>
             </div>
             <div className="date-filter">
                 <span className="sort">SORT BY</span>
                 <button className="drop-btn">RELEASE DATE</button>
                 <div className="dropdown-content">
-                    <a href="#">2021</a>
-                    <a href="#">2020</a>
-                    <a href="#">2019</a>
+                    <a href="#" onClick={loadByDate}>DATE</a>
+                    <a href="#" onClick={loadByRating}>RATING</a>
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};

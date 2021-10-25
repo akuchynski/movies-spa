@@ -1,20 +1,31 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getMovies } from "../../store/thunks";
 import { MovieItem } from "./MovieItem";
-import { movies } from "../../utils/setMockData";
 
 export const MovieList = () => {
+
+    const dispatch = useDispatch();
+    const { isLoading, movies, errorMessage } = useSelector(state => state.movies);
+
+    useEffect(() => {
+        dispatch(getMovies());
+    }, []);
+
     return (
         <div className="movie-list">
-            {movies.map(({ id, name, year, genre, image }) => (
+            {isLoading && <h3>Loading movies...</h3>}
+            {errorMessage && <h3>{errorMessage}</h3>}
+            {movies && movies.map(({ id, title, release_date, genres, poster_path }) => (
                 <MovieItem
                     key={id}
                     movieId={id}
-                    name={name}
-                    year={year}
-                    genre={genre}
-                    image={image}
+                    title={title}
+                    release_date={release_date}
+                    genres={genres}
+                    poster_path={poster_path}
                 />
             ))}
         </div>
-    )
-}
+    );
+};
