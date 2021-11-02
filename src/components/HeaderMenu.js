@@ -21,8 +21,10 @@ export const HeaderMenu = () => {
                 <button className="add-button" onClick={handleAddModal}>+ ADD MOVIE</button>
                 <div className="search">
                     <h1>FIND YOUR MOVIE</h1>
-                    <input type="text" placeholder="What do you want to watch?" />
-                    <button className="search-button">SEARCH</button>
+                    <form>
+                        <input type="text" placeholder="What do you want to watch?" />
+                        <button className="search-button">SEARCH</button>
+                    </form>
                 </div>
                 {isAddActive && <MovieModal handleClose={handleAddModal} title={"ADD MOVIE"} />}
             </div>}

@@ -8,52 +8,63 @@ const initialState = {
     errorMessage: null
 };
 
-export const movieReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case actionTypes.GET_MOVIES_REQUEST:
+const {
+    GET_MOVIES_REQUEST,
+    GET_MOVIES_SUCCESS,
+    GET_MOVIES_ERROR,
+    GET_MOVIE_REQUEST,
+    GET_MOVIE_SUCCESS,
+    GET_MOVIE_ERROR,
+    CLOSE_MOVIE_DETAILS,
+    SET_ACTIVE_FILTER
+} = actionTypes;
+
+export const movieReducer = (state = initialState, { type, payload }) => {
+    switch (type) {
+        case GET_MOVIES_REQUEST:
             return {
                 ...state,
                 isLoading: true,
                 movies: null,
                 errorMessage: null
             };
-        case actionTypes.GET_MOVIES_SUCCESS:
+        case GET_MOVIES_SUCCESS:
             return {
                 ...state,
                 isLoading: false,
-                movies: action.payload.data
+                movies: payload.data
             };
-        case actionTypes.GET_MOVIES_ERROR:
+        case GET_MOVIES_ERROR:
             return {
                 ...state,
                 isLoading: false,
-                errorMessage: action.payload
+                errorMessage: payload
             };
-        case actionTypes.GET_MOVIE_REQUEST:
+        case GET_MOVIE_REQUEST:
             return {
                 ...state,
                 movieDetails: null,
                 errorMessage: null
             };
-        case actionTypes.GET_MOVIE_SUCCESS:
+        case GET_MOVIE_SUCCESS:
             return {
                 ...state,
-                movieDetails: action.payload
+                movieDetails: payload
             };
-        case actionTypes.GET_MOVIE_ERROR:
+        case GET_MOVIE_ERROR:
             return {
                 ...state,
-                errorMessage: action.payload
+                errorMessage: payload
             };
-        case actionTypes.CLOSE_MOVIE_DETAILS:
+        case CLOSE_MOVIE_DETAILS:
             return {
                 ...state,
                 movieDetails: null
             };
-        case actionTypes.SET_ACTIVE_FILTER:
+        case SET_ACTIVE_FILTER:
             return {
                 ...state,
-                activeFilter: action.payload
+                activeFilter: payload
             };
         default:
             return state;

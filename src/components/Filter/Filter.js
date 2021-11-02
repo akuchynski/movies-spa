@@ -2,10 +2,9 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { getMoviesByDate, getMoviesByRating } from "../../store/thunks";
 import { FilterLink } from './FilterLink';
+import { genres } from '../../utils/genres';
 
 export const Filter = () => {
-
-    const genres = ['ALL', 'DOCUMENTARY', 'COMEDY', 'HORROR', 'CRIME'];
 
     const dispatch = useDispatch();
     const loadByDate = () => dispatch(getMoviesByDate());

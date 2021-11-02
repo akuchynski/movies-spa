@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getMovies, getMoviesByGenre } from "../../store/thunks";
+import { getMoviesByGenre } from "../../store/thunks";
 import actions from '../../store/actions';
 
 export const FilterLink = ({ genre }) => {
@@ -15,11 +15,7 @@ export const FilterLink = ({ genre }) => {
 
     const handleMenuClick = () => {
         dispatch(actions.setActiveFilter(genre));
-        if (genre === 'ALL') {
-            dispatch(getMovies());
-        } else {
-            dispatch(getMoviesByGenre(genre));
-        }
+        dispatch(getMoviesByGenre(genre));
     };
 
     return (
