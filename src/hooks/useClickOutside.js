@@ -9,14 +9,14 @@ export const useClickOutside = (handleClose) => {
       if (ref.current && !ref.current.contains(e.target)) {
         handleClose();
       }
-    }
+    };
 
     document.addEventListener("click", checkClick);
 
     return () => {
       document.removeEventListener("click", checkClick);
-    }
-  })
+    };
+  });
 
   return ref;
-}
+};

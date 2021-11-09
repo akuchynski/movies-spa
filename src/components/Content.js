@@ -8,5 +8,5 @@ export const Content = () => {
             <Filter />
             <MovieList />
         </div>
-    )
-}
+    );
+};

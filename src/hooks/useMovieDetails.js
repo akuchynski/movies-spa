@@ -7,7 +7,7 @@ export const useMovieDetails = () => {
 
   const handleMovieId = (movieId) => {
     setMovie(() => movies.find(item => item.id === movieId));
-  }
+  };
 
   return [movie, handleMovieId];
-}
+};
