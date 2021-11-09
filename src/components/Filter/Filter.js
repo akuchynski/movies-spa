@@ -26,7 +26,7 @@ export const Filter = () => {
         <div className="filter">
             <div className="genre-filter">
                 <ul>
-                    {genres.map((genre) => (<FilterLink key={genre} genre={genre} />))}
+                    {genres.map((genre) => (<FilterLink key={genre.value} genre={genre.label} />))}
                 </ul>
             </div>
             <div className="date-filter">

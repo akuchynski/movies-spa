@@ -53,11 +53,11 @@ export const MovieItem = ({ movieId, title, release_date, genres, poster_path })
                 <div className="year">{release_date.slice(0, 4)}</div>
                 <div className="genre">{genres.join(', ')}</div>
             </div>
-            {isDeleteActive && <DeleteMovieModal handleClose={handleDeleteModal} />}
-            {isEditActive && <MovieModal handleClose={handleEditModal} title={"EDIT MOVIE"} />}
+            {isDeleteActive && <DeleteMovieModal movieId={movieId} handleClose={handleDeleteModal} />}
+            {isEditActive && <MovieModal movieId={movieId} handleClose={handleEditModal} />}
         </div>
     );
-};
+}; F
 
 MovieItem.propTypes = {
     title: PropTypes.string.isRequired,

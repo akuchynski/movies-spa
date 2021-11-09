@@ -16,7 +16,11 @@ const {
     GET_MOVIE_SUCCESS,
     GET_MOVIE_ERROR,
     CLOSE_MOVIE_DETAILS,
-    SET_ACTIVE_FILTER
+    SET_ACTIVE_FILTER,
+    ADD_MOVIE_SUCCESS,
+    ADD_MOVIE_ERROR,
+    DELETE_MOVIE_SUCCESS,
+    DELETE_MOVIE_ERROR,
 } = actionTypes;
 
 export const movieReducer = (state = initialState, { type, payload }) => {
@@ -65,6 +69,24 @@ export const movieReducer = (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 activeFilter: payload
+            };
+        case ADD_MOVIE_SUCCESS:
+            return {
+                ...state
+            };
+        case ADD_MOVIE_ERROR:
+            return {
+                ...state,
+                errorMessage: payload
+            };
+        case DELETE_MOVIE_SUCCESS:
+            return {
+                ...state
+            };
+        case DELETE_MOVIE_ERROR:
+            return {
+                ...state,
+                errorMessage: payload
             };
         default:
             return state;
