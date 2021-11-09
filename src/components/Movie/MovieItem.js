@@ -57,7 +57,7 @@ export const MovieItem = ({ movieId, title, release_date, genres, poster_path })
             {isEditActive && <MovieModal movieId={movieId} handleClose={handleEditModal} />}
         </div>
     );
-}; F
+};
 
 MovieItem.propTypes = {
     title: PropTypes.string.isRequired,
