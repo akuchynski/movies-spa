@@ -1,6 +1,6 @@
 import React from "react";
 import { useClickOutside } from "../../hooks/useClickOutside";
-import { useDispatch } from "react-redux";
+import { useDispatch, batch } from "react-redux";
 import { deleteMovie, getMovies } from "../../store/thunks";
 import actions from "../../store/actions";
 
@@ -11,10 +11,12 @@ export const DeleteMovieModal = ({ handleClose, movieId }) => {
     const dispatch = useDispatch();
 
     const handleDelete = () => {
-        dispatch(deleteMovie(movieId));
-        handleClose();
-        dispatch(actions.closeMovieDetails);
-        dispatch(getMovies());
+        batch(() => {
+            dispatch(deleteMovie(movieId));
+            handleClose();
+            dispatch(actions.closeMovieDetails);
+            dispatch(getMovies());
+        })
     };
 
     return (

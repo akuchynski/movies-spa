@@ -9,7 +9,7 @@ export const FilterLink = ({ genre }) => {
     const { activeFilter } = useSelector(state => state.movies);
 
     useEffect(() => {
-        if (genre === 'ALL')
+        if (genre === 'All')
             dispatch(actions.setActiveFilter(genre));
     }, []);
 

@@ -5,6 +5,7 @@ import { useClickOutside } from "../../hooks/useClickOutside";
 import PropTypes from 'prop-types';
 import { DeleteMovieModal } from "../Modal/DeleteMovie";
 import { MovieModal } from "../Modal/MovieModal";
+import movieUtils from "../../utils/movieUtils"
 import MovieButton from '../../assets/images/movie-menu-btn.png';
 
 export const MovieItem = ({ movieId, title, release_date, genres, poster_path }) => {
@@ -50,8 +51,8 @@ export const MovieItem = ({ movieId, title, release_date, genres, poster_path })
             }
             <div className="movie-info">
                 <div className="name">{title}</div>
-                <div className="year">{release_date.slice(0, 4)}</div>
-                <div className="genre">{genres.join(', ')}</div>
+                <div className="year">{movieUtils.getYear(release_date)}</div>
+                <div className="genre">{movieUtils.joinGenres(genres)}</div>
             </div>
             {isDeleteActive && <DeleteMovieModal movieId={movieId} handleClose={handleDeleteModal} />}
             {isEditActive && <MovieModal movieId={movieId} handleClose={handleEditModal} />}

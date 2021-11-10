@@ -10,7 +10,7 @@ export const getMovies = () => (dispatch) => {
 
 export const getMoviesByGenre = (genre) => (dispatch) => {
     dispatch(actions.getMoviesRequest());
-    axios.get('http://localhost:4000/movies', genre !== 'ALL' && { params: { searchBy: 'genres', filter: genre } })
+    axios.get('http://localhost:4000/movies', genre !== 'All' && { params: { searchBy: 'genres', filter: genre } })
         .then((response) => dispatch(actions.getMoviesSuccess(response.data)))
         .catch((error) => dispatch(actions.getMoviesError(error.message)));
 };

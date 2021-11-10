@@ -5,21 +5,49 @@ import Select from "react-select";
 import { useDispatch, useSelector } from "react-redux";
 import { addMovie, getMovieById, updateMovie } from "../../store/thunks";
 import { genres } from '../../utils/genres';
+import movieUtils from "../../utils/movieUtils";
+import * as Yup from 'yup';
 
 export const MovieModal = ({ movieId, handleClose }) => {
 
     const isAddMode = !movieId;
-
     const dispatch = useDispatch();
-
     const ref = useClickOutside(handleClose);
+    const { movieDetails } = useSelector(state => state.movies);
+
+    const initialValues = {
+        title: movieDetails ? movieDetails.title : '',
+        release_date: movieDetails ? movieDetails.release_date : '',
+        poster_path: movieDetails ? movieDetails.poster_path : '',
+        vote_average: movieDetails ? movieDetails.vote_average : 0,
+        genres: movieDetails ? movieUtils.getOptions(movieDetails.movieGenres) : [],
+        runtime: movieDetails ? movieDetails.runtime : 0,
+        overview: movieDetails ? movieDetails.overview : ''
+    };
+
+    const AddEditSchema = Yup.object().shape({
+        title: Yup.string()
+            .min(2, 'Too Short!')
+            .max(50, 'Too Long!')
+            .required('Required'),
+        release_date: Yup.date()
+            .required('Required'),
+        poster_path: Yup.string()
+            .url()
+            .required('Required'),
+        vote_average: Yup.number()
+            .min(0, 'Value must be greater than 0!')
+            .max(10, 'Value must be less than 10.0!')
+            .required('Required'),
+        runtime: Yup.number()
+            .min(0, 'Too Short!')
+            .required('Required'),
+    });
 
     useEffect(() => {
         if (!isAddMode)
             dispatch(getMovieById(movieId));
     }, []);
-
-    const { movieDetails } = useSelector(state => state.movies);
 
     return (
         <div className="modal">
@@ -29,39 +57,8 @@ export const MovieModal = ({ movieId, handleClose }) => {
 
                 <Formik
                     enableReinitialize={true}
-                    initialValues={{
-                        title: movieDetails ? movieDetails.title : '',
-                        release_date: movieDetails ? movieDetails.release_date : '',
-                        poster_path: movieDetails ? movieDetails.poster_path : '',
-                        vote_average: movieDetails ? movieDetails.vote_average : 0,
-                        genres: movieDetails ? movieDetails.genres.map(item => ({ value: item, label: item })) : [],
-                        runtime: movieDetails ? movieDetails.runtime : 0,
-                        overview: movieDetails ? movieDetails.overview : ''
-                    }}
-                    validate={values => {
-                        const errors = {};
-                        if (!values.title) {
-                            errors.title = 'Required';
-                        } else if (values.title.length <= 2) {
-                            errors.title = 'Must be 3 characters or more';
-                        }
-
-                        if (!values.release_date) {
-                            errors.release_date = 'Required';
-                        }
-
-                        if (!values.poster_path) {
-                            errors.poster_path = 'Required';
-                        }
-
-                        if (!values.vote_average) {
-                            errors.vote_average = 'Required';
-                        } else if (values.vote_average < 0 || values.vote_average > 10) {
-                            errors.vote_average = 'Value must be between 0 and 10.0';
-                        }
-
-                        return errors;
-                    }}
+                    initialValues={initialValues}
+                    validationSchema={AddEditSchema}
                     onSubmit={(values, { setSubmitting }) => {
                         if (isAddMode) {
                             dispatch(addMovie(values));
@@ -76,22 +73,22 @@ export const MovieModal = ({ movieId, handleClose }) => {
                         <Form>
                             <label className="modal-text">
                                 TITLE
-                                <Field type="text" name="title" />
+                                <Field type="text" name="title" autoComplete="off" />
                                 <ErrorMessage name="title" component="div" />
                             </label>
                             <label className="modal-text-short">
                                 RELEASE DATE
-                                <Field type="text" name="release_date" />
+                                <Field type="text" name="release_date" autoComplete="off" />
                                 <ErrorMessage name="release_date" component="div" />
                             </label>
                             <label className="modal-text">
                                 POSTER PATH
-                                <Field type="text" name="poster_path" />
+                                <Field type="text" name="poster_path" autoComplete="off" />
                                 <ErrorMessage name="poster_path" component="div" />
                             </label>
                             <label className="modal-text-short">
                                 RATING
-                                <Field type="number" name="vote_average" />
+                                <Field type="number" name="vote_average" autoComplete="off" />
                                 <ErrorMessage name="vote_average" component="div" />
                             </label>
                             <label className="modal-text">
@@ -109,7 +106,7 @@ export const MovieModal = ({ movieId, handleClose }) => {
                             </label>
                             <label className="modal-text-short">
                                 RUNTIME
-                                <Field type="number" name="runtime" />
+                                <Field type="number" name="runtime" autoComplete="off" />
                                 <ErrorMessage name="runtime" component="div" />
                             </label>
                             <label className="modal-textarea">

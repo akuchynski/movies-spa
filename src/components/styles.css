@@ -485,6 +485,7 @@ button {
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
+  text-transform: uppercase;
 }
 
 .genre-filter li a:hover:not(.active) {
@@ -546,16 +547,25 @@ button {
 .react-select-container {
   margin: 5px 0 15px 0;
   margin-right: 30px;
-  border-radius: 4px;
 }
 
-.react-select__control .react-select__indicators {
-  background-color: var(--modal-input-bg);
-  border-style: none;
+.react-select__control {
+  background-color: var(--modal-input-bg) !important;
+  border-style: none !important;
+}
+
+.react-select__control--is-focused {
+  border-color: var(--white) !important;
+  box-shadow: inset 0px 0px 0px 1px var(--white) !important;
 }
 
 .react-select__value-container {
   width: 470px;
   height: 57px;
-  background-color: var(--modal-input-bg);
+  border-radius: 4px;
+  align-content: center;
+}
+
+.react-select__menu-list {
+  font-size: 14px;
 }
