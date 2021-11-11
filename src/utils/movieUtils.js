@@ -1,17 +1,15 @@
-const joinGenres = (genres) => {
-    return genres.join(', ');
+export const joinItems = (items) => {
+    return items.join(', ');
 };
 
-const getYear = (release_date) => {
+export const getYear = (release_date) => {
     return release_date.slice(0, 4);
 };
 
-const getOptions = (genres) => {
+export const getOptions = (genres) => {
     return genres.map(item => ({ value: item, label: item }));
 };
 
-export default {
-    joinGenres,
-    getYear,
-    getOptions
+export const getGenres = (options) => {
+    return options.map(item => item.value);
 };

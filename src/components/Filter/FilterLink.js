@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMoviesByGenre } from "../../store/thunks";
-import actions from '../../store/actions';
+import actions from "../../store/actions";
 
 export const FilterLink = ({ genre }) => {
 

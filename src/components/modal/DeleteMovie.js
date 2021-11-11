@@ -13,10 +13,10 @@ export const DeleteMovieModal = ({ handleClose, movieId }) => {
     const handleDelete = () => {
         batch(() => {
             dispatch(deleteMovie(movieId));
-            handleClose();
             dispatch(actions.closeMovieDetails);
             dispatch(getMovies());
-        })
+        });
+        handleClose();
     };
 
     return (

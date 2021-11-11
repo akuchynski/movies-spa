@@ -5,12 +5,11 @@ import Select from "react-select";
 import { useDispatch, useSelector } from "react-redux";
 import { addMovie, getMovieById, updateMovie } from "../../store/thunks";
 import { genres } from '../../utils/genres';
-import movieUtils from "../../utils/movieUtils";
+import { getOptions, getGenres } from "../../utils/movieUtils";
 import * as Yup from 'yup';
 
 export const MovieModal = ({ movieId, handleClose }) => {
 
-    const isAddMode = !movieId;
     const dispatch = useDispatch();
     const ref = useClickOutside(handleClose);
     const { movieDetails } = useSelector(state => state.movies);
@@ -20,7 +19,7 @@ export const MovieModal = ({ movieId, handleClose }) => {
         release_date: movieDetails ? movieDetails.release_date : '',
         poster_path: movieDetails ? movieDetails.poster_path : '',
         vote_average: movieDetails ? movieDetails.vote_average : 0,
-        genres: movieDetails ? movieUtils.getOptions(movieDetails.movieGenres) : [],
+        genres: movieDetails ? getOptions(movieDetails.genres) : [],
         runtime: movieDetails ? movieDetails.runtime : 0,
         overview: movieDetails ? movieDetails.overview : ''
     };
@@ -45,7 +44,7 @@ export const MovieModal = ({ movieId, handleClose }) => {
     });
 
     useEffect(() => {
-        if (!isAddMode)
+        if (movieId)
             dispatch(getMovieById(movieId));
     }, []);
 
@@ -53,17 +52,18 @@ export const MovieModal = ({ movieId, handleClose }) => {
         <div className="modal">
             <div className="add-movie-modal">
                 <span className="close" onClick={handleClose}>&#x2715;</span>
-                <h2>{isAddMode ? "ADD MOVIE" : "EDIT MOVIE"}</h2>
+                <h2>{!movieId ? "ADD MOVIE" : "EDIT MOVIE"}</h2>
 
                 <Formik
                     enableReinitialize={true}
                     initialValues={initialValues}
                     validationSchema={AddEditSchema}
                     onSubmit={(values, { setSubmitting }) => {
-                        if (isAddMode) {
-                            dispatch(addMovie(values));
+                        if (!movieId) {
+                            dispatch(addMovie({ ...values, genres: getGenres(values.genres) }));
                         } else {
-                            dispatch(updateMovie(movieId, values));
+                            console.log(values);
+                            dispatch(updateMovie({ ...values, id: movieId, genres: getGenres(values.genres) }));
                         }
                         setSubmitting(false);
                         handleClose();

@@ -23,9 +23,13 @@ const getMovieSuccess = (movie) => ({
     payload: movie
 });
 
-const getMovieError = (errorMessage) => ({
-    type: actionTypes.GET_MOVIE_ERROR,
+const movieError = (errorMessage) => ({
+    type: actionTypes.MOVIE_ERROR,
     payload: errorMessage
+});
+
+const openMovieDetails = () => ({
+    type: actionTypes.OPEN_MOVIE_DETAILS,
 });
 
 const closeMovieDetails = () => ({
@@ -37,46 +41,14 @@ const setActiveFilter = (value) => ({
     payload: value
 });
 
-const addMovieSuccess = () => ({
-    type: actionTypes.GET_MOVIE_SUCCESS,
-});
-
-const addMovieError = (errorMessage) => ({
-    type: actionTypes.GET_MOVIE_ERROR,
-    payload: errorMessage
-});
-
-const updateMovieSuccess = () => ({
-    type: actionTypes.UPDATE_MOVIE_SUCCESS,
-});
-
-const updateMovieError = (errorMessage) => ({
-    type: actionTypes.UPDATE_MOVIE_ERROR,
-    payload: errorMessage
-});
-
-const deleteMovieSuccess = () => ({
-    type: actionTypes.DELETE_MOVIE_SUCCESS,
-});
-
-const deleteMovieError = (errorMessage) => ({
-    type: actionTypes.DELETE_MOVIE_ERROR,
-    payload: errorMessage
-});
-
 export default {
     getMoviesRequest,
     getMoviesSuccess,
     getMoviesError,
     getMovieRequest,
     getMovieSuccess,
-    getMovieError,
+    movieError,
+    openMovieDetails,
     closeMovieDetails,
-    setActiveFilter,
-    addMovieSuccess,
-    addMovieError,
-    updateMovieSuccess,
-    updateMovieError,
-    deleteMovieSuccess,
-    deleteMovieError
+    setActiveFilter
 };
