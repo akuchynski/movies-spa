@@ -1,20 +1,27 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, batch } from "react-redux";
 import { getMovieById } from "../../store/thunks";
+import actions from "../../store/actions";
 import { useClickOutside } from "../../hooks/useClickOutside";
 import PropTypes from 'prop-types';
 import { DeleteMovieModal } from "../Modal/DeleteMovie";
 import { MovieModal } from "../Modal/MovieModal";
+import { joinItems, getYear } from "../../utils/movieUtils";
 import MovieButton from '../../assets/images/movie-menu-btn.png';
 
 export const MovieItem = ({ movieId, title, release_date, genres, poster_path }) => {
 
     const dispatch = useDispatch();
-    const loadMovieDetails = () => dispatch(getMovieById(movieId));
-
     const [isMenuActive, setMenuActive] = useState(false);
     const [isEditActive, setEditActive] = useState(false);
     const [isDeleteActive, setDeleteActive] = useState(false);
+
+    const loadMovieDetails = () => {
+        batch(() => {
+            dispatch(getMovieById(movieId));
+            dispatch(actions.openMovieDetails());
+        });
+    };
 
     const handleMenuToggle = () => {
         setMenuActive(!isMenuActive);
@@ -50,11 +57,11 @@ export const MovieItem = ({ movieId, title, release_date, genres, poster_path })
             }
             <div className="movie-info">
                 <div className="name">{title}</div>
-                <div className="year">{release_date.slice(0, 4)}</div>
-                <div className="genre">{genres.join(', ')}</div>
+                <div className="year">{getYear(release_date)}</div>
+                <div className="genre">{joinItems(genres)}</div>
             </div>
-            {isDeleteActive && <DeleteMovieModal handleClose={handleDeleteModal} />}
-            {isEditActive && <MovieModal handleClose={handleEditModal} title={"EDIT MOVIE"} />}
+            {isDeleteActive && <DeleteMovieModal movieId={movieId} handleClose={handleDeleteModal} />}
+            {isEditActive && <MovieModal movieId={movieId} handleClose={handleEditModal} />}
         </div>
     );
 };

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMoviesByGenre } from "../../store/thunks";
-import actions from '../../store/actions';
+import actions from "../../store/actions";
 
 export const FilterLink = ({ genre }) => {
 
@@ -9,7 +9,7 @@ export const FilterLink = ({ genre }) => {
     const { activeFilter } = useSelector(state => state.movies);
 
     useEffect(() => {
-        if (genre === 'ALL')
+        if (genre === 'All')
             dispatch(actions.setActiveFilter(genre));
     }, []);
 

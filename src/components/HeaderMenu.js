@@ -10,10 +10,10 @@ export const HeaderMenu = () => {
         setAddActive(!isAddActive);
     };
 
-    const { movieDetails } = useSelector(state => state.movies);
+    const { isDetailsOpen, movieDetails } = useSelector(state => state.movies);
 
     return (
-        <>{movieDetails ? <MovieDetails /> :
+        <>{isDetailsOpen && movieDetails ? <MovieDetails /> :
             <div className="header">
                 <div className="logo">movie
                     <span>roulette</span>

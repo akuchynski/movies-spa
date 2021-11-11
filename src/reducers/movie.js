@@ -2,6 +2,7 @@ import actionTypes from "../store/actionTypes";
 
 const initialState = {
     isLoading: false,
+    isDetailsOpen: false,
     movies: null,
     movieDetails: null,
     activeFilter: null,
@@ -14,9 +15,10 @@ const {
     GET_MOVIES_ERROR,
     GET_MOVIE_REQUEST,
     GET_MOVIE_SUCCESS,
-    GET_MOVIE_ERROR,
+    MOVIE_ERROR,
+    OPEN_MOVIE_DETAILS,
     CLOSE_MOVIE_DETAILS,
-    SET_ACTIVE_FILTER
+    SET_ACTIVE_FILTER,
 } = actionTypes;
 
 export const movieReducer = (state = initialState, { type, payload }) => {
@@ -51,14 +53,20 @@ export const movieReducer = (state = initialState, { type, payload }) => {
                 ...state,
                 movieDetails: payload
             };
-        case GET_MOVIE_ERROR:
+        case MOVIE_ERROR:
             return {
                 ...state,
                 errorMessage: payload
             };
+        case OPEN_MOVIE_DETAILS:
+            return {
+                ...state,
+                isDetailsOpen: true
+            };
         case CLOSE_MOVIE_DETAILS:
             return {
                 ...state,
+                isDetailsOpen: false,
                 movieDetails: null
             };
         case SET_ACTIVE_FILTER:

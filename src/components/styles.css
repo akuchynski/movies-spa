@@ -192,6 +192,7 @@ body {
 .content {
   background-color: var(--dark-grey-color);
   width: 1200px;
+  min-height: 1000px;
   margin-bottom: 70px;
 }
 
@@ -249,10 +250,11 @@ body {
 
 .item .movie-menu li {
   list-style-type: none;
-  padding: 10px 25px;
 }
 
 .item .movie-menu li a {
+  display: block;
+  padding: 10px 25px;
   text-decoration: none;
   color: var(--white);
 }
@@ -329,7 +331,7 @@ body {
   background-color: var(--dark-grey-color);
   margin: auto;
   width: 976px;
-  height: 800px;
+  height: 720px;
   left: auto;
 }
 
@@ -379,17 +381,23 @@ body {
   padding: 30px 60px;
 }
 
-.add-movie-modal input {
+.add-movie-modal input, textarea {
   display: block;
   border-radius: 4px;
   border-style: none;
   margin: 5px 0 15px 0;
   background-color: var(--modal-input-bg);
+  color: var(--white);
+  padding-left: 15px;
+}
+
+.add-movie-modal textarea {
+  padding-top: 15px;
 }
 
 .modal-text input {
   margin-right: 30px;
-  width: 510px;
+  width: 490px;
   height: 57px;
 }
 
@@ -398,12 +406,25 @@ body {
   height: 57px;
 }
 
-.modal-textarea input {
+.modal-textarea textarea {
   display: block;
   width: 845px;
-  height: 180px;
+  height: 100px;
   margin-bottom: 50px;
   border-radius: 4px;
+}
+
+.modal-text select[multiple] {
+  background-color: var(--modal-input-bg);
+  width:auto;
+  height:auto;
+  padding:0;
+  margin:0;
+  border-width: 2px;
+  border-style: inset;
+  -moz-appearance: menulist;
+  -webkit-appearance: menulist;
+  appearance: menulist;
 }
 
 .modal-text, .modal-text-short, .modal-textarea {
@@ -466,6 +487,7 @@ button {
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
+  text-transform: uppercase;
 }
 
 .genre-filter li a:hover:not(.active) {
@@ -522,4 +544,30 @@ button {
 
 .date-filter:hover .dropdown-content {
   display: block;
+}
+
+.react-select-container {
+  margin: 5px 0 15px 0;
+  margin-right: 30px;
+}
+
+.react-select__control {
+  background-color: var(--modal-input-bg) !important;
+  border-style: none !important;
+}
+
+.react-select__control--is-focused {
+  border-color: var(--white) !important;
+  box-shadow: inset 0px 0px 0px 1px var(--white) !important;
+}
+
+.react-select__value-container {
+  width: 470px;
+  height: 57px;
+  border-radius: 4px;
+  align-content: center;
+}
+
+.react-select__menu-list {
+  font-size: 14px;
 }

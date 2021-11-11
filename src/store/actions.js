@@ -23,9 +23,13 @@ const getMovieSuccess = (movie) => ({
     payload: movie
 });
 
-const getMovieError = (errorMessage) => ({
-    type: actionTypes.GET_MOVIE_ERROR,
+const movieError = (errorMessage) => ({
+    type: actionTypes.MOVIE_ERROR,
     payload: errorMessage
+});
+
+const openMovieDetails = () => ({
+    type: actionTypes.OPEN_MOVIE_DETAILS,
 });
 
 const closeMovieDetails = () => ({
@@ -43,7 +47,8 @@ export default {
     getMoviesError,
     getMovieRequest,
     getMovieSuccess,
-    getMovieError,
+    movieError,
+    openMovieDetails,
     closeMovieDetails,
-    setActiveFilter,
+    setActiveFilter
 };

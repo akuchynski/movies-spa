@@ -1,37 +1,56 @@
 import axios from "axios";
 import actions from "./actions";
 
+const api = axios.create({
+    baseURL: 'http://localhost:4000/movies/'
+});
+
 export const getMovies = () => (dispatch) => {
     dispatch(actions.getMoviesRequest());
-    axios.get('http://localhost:4000/movies')
-        .then((response) => dispatch(actions.getMoviesSuccess(response.data)))
-        .catch((error) => dispatch(actions.getMoviesError(error.message)));
+    api.get('/')
+        .then(({ data }) => dispatch(actions.getMoviesSuccess(data)))
+        .catch(({ message }) => dispatch(actions.getMoviesError(message)));
 };
 
 export const getMoviesByGenre = (genre) => (dispatch) => {
     dispatch(actions.getMoviesRequest());
-    axios.get('http://localhost:4000/movies', genre !== 'ALL' && { params: { searchBy: 'genres', filter: genre } })
-        .then((response) => dispatch(actions.getMoviesSuccess(response.data)))
-        .catch((error) => dispatch(actions.getMoviesError(error.message)));
+    api.get('/', genre !== 'All' && { params: { searchBy: 'genres', filter: genre } })
+        .then(({ data }) => dispatch(actions.getMoviesSuccess(data)))
+        .catch(({ message }) => dispatch(actions.getMoviesError(message)));
 };
 
 export const getMoviesByDate = () => (dispatch) => {
     dispatch(actions.getMoviesRequest());
-    axios.get('http://localhost:4000/movies?sortBy=release_date&sortOrder=desc')
-        .then((response) => dispatch(actions.getMoviesSuccess(response.data)))
-        .catch((error) => dispatch(actions.getMoviesError(error.message)));
+    api.get('/', { params: { sortBy: 'release_date', sortOrder: 'desc' } })
+        .then(({ data }) => dispatch(actions.getMoviesSuccess(data)))
+        .catch(({ message }) => dispatch(actions.getMoviesError(message)));
 };
 
 export const getMoviesByRating = () => (dispatch) => {
     dispatch(actions.getMoviesRequest());
-    axios.get('http://localhost:4000/movies?sortBy=vote_average&sortOrder=desc')
-        .then((response) => dispatch(actions.getMoviesSuccess(response.data)))
-        .catch((error) => dispatch(actions.getMoviesError(error.message)));
+    api.get('/', { params: { sortBy: 'vote_average', sortOrder: 'desc' } })
+        .then(({ data }) => dispatch(actions.getMoviesSuccess(data)))
+        .catch(({ message }) => dispatch(actions.getMoviesError(message)));
 };
 
 export const getMovieById = (id) => (dispatch) => {
     dispatch(actions.getMovieRequest());
-    axios.get('http://localhost:4000/movies/' + id)
-        .then((response) => dispatch(actions.getMovieSuccess(response.data)))
-        .catch((error) => dispatch(actions.getMovieError(error.message)));
+    api.get('/' + id)
+        .then(({ data }) => dispatch(actions.getMovieSuccess(data)))
+        .catch(({ message }) => dispatch(actions.movieError(message)));
+};
+
+export const addMovie = (movie) => (dispatch) => {
+    api.post('/', movie)
+        .catch(({ message }) => dispatch(actions.movieError(message)));
+};
+
+export const updateMovie = (movie) => (dispatch) => {
+    api.put('/', movie)
+        .catch(({ message }) => dispatch(actions.movieError(message)));
+};
+
+export const deleteMovie = (id) => (dispatch) => {
+    api.delete('/' + id)
+        .catch(({ message }) => dispatch(actions.movieError(message)));
 };

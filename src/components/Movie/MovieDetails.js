@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import actions from "../../store/actions";
+import { joinItems } from "../../utils/movieUtils";
 
 export const MovieDetails = () => {
 
@@ -25,7 +26,7 @@ export const MovieDetails = () => {
                         <div className="name">{title}</div>
                         <div className="rating">{vote_average}</div>
                     </div>
-                    <div className="genre">{genres.join(', ')}</div>
+                    <div className="genre">{joinItems(genres)}</div>
                     <div className="date-time">
                         <div className="year">{release_date}</div>
                         <div className="duration">{runtime} min</div>
