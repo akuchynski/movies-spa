@@ -1,4 +1,5 @@
 import { StrictMode } from "react";
+import { BrowserRouter } from "react-router-dom";
 import ReactDOM from "react-dom";
 
 import { App } from "./components/App";
@@ -6,7 +7,9 @@ import { App } from "./components/App";
 const rootElement = document.getElementById("root");
 ReactDOM.render(
   <StrictMode>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </StrictMode>,
   rootElement
 );

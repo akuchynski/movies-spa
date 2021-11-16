@@ -12,6 +12,7 @@ module.exports = {
     devServer: {
         static: './build',
         compress: true,
+        historyApiFallback: true,
         port: process.env.NODE_ENV === 'production' ? 8000 : 9000,
         open: {
             app: {

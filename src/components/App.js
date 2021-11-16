@@ -1,18 +1,17 @@
 import React from "react";
 import { Provider } from 'react-redux';
+import { Routes, Route, Navigate } from "react-router-dom";
 import { store } from "../store/configureStore";
-import { HeaderMenu } from "./HeaderMenu";
-import { Content } from "./Content";
-import { ErrorBoundary } from "./ErrorBoundary";
+import { Main } from "./Main";
 import "./styles.css";
 
 export const App = () => {
   return (
     <Provider store={store}>
-      <ErrorBoundary>
-        <HeaderMenu />
-        <Content />
-      </ErrorBoundary>
+      <Routes>
+        <Route path="/search" element={<Main />} />
+        <Route path="/" element={<Navigate replace to="/search" />} />
+      </Routes>
     </Provider>
   );
 };
