@@ -62,7 +62,6 @@ export const MovieModal = ({ movieId, handleClose }) => {
                         if (!movieId) {
                             dispatch(addMovie({ ...values, genres: getGenres(values.genres) }));
                         } else {
-                            console.log(values);
                             dispatch(updateMovie({ ...values, id: movieId, genres: getGenres(values.genres) }));
                         }
                         setSubmitting(false);

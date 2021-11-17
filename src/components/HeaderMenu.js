@@ -1,33 +1,23 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { MovieModal } from "./Modal/MovieModal";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { MovieDetails } from "./Movie/MovieDetails";
+import { MovieSearch } from "./Movie/MovieSearch";
+import { getMovieById } from "../store/thunks";
+import { useSearchParams } from "react-router-dom";
 
 export const HeaderMenu = () => {
-    const [isAddActive, setAddActive] = useState(false);
 
-    const handleAddModal = () => {
-        setAddActive(!isAddActive);
-    };
+    const dispatch = useDispatch();
+    const [searchParams] = useSearchParams();
+    const movieParam = searchParams.get("movie");
+    const { movieDetails } = useSelector(state => state.movies);
 
-    const { isDetailsOpen, movieDetails } = useSelector(state => state.movies);
+    useEffect(() => {
+        if (movieParam)
+            dispatch(getMovieById(movieParam));
+    }, []);
 
     return (
-        <>{isDetailsOpen && movieDetails ? <MovieDetails /> :
-            <div className="header">
-                <div className="logo">movie
-                    <span>roulette</span>
-                </div>
-                <button className="add-button" onClick={handleAddModal}>+ ADD MOVIE</button>
-                <div className="search">
-                    <h1>FIND YOUR MOVIE</h1>
-                    <form>
-                        <input type="text" placeholder="What do you want to watch?" />
-                        <button className="search-button">SEARCH</button>
-                    </form>
-                </div>
-                {isAddActive && <MovieModal handleClose={handleAddModal} title={"ADD MOVIE"} />}
-            </div>}
-        </>
+        movieDetails ? <MovieDetails /> : <MovieSearch />
     );
 };
