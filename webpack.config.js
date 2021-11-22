@@ -7,11 +7,13 @@ module.exports = {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'build'),
         clean: true,
+        publicPath: '/',
     },
     devtool: 'source-map',
     devServer: {
         static: './build',
         compress: true,
+        historyApiFallback: true,
         port: process.env.NODE_ENV === 'production' ? 8000 : 9000,
         open: {
             app: {

@@ -1,5 +1,4 @@
 export const genres = [
-    { value: 'All', label: 'All' },
     { value: 'Adventure', label: 'Adventure' },
     { value: 'Comedy', label: 'Comedy' },
     { value: 'Crime', label: 'Crime' },

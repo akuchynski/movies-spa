@@ -1,26 +1,25 @@
 import React, { useState } from "react";
-import { useDispatch, batch } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { getMovieById } from "../../store/thunks";
-import actions from "../../store/actions";
-import { useClickOutside } from "../../hooks/useClickOutside";
 import PropTypes from 'prop-types';
-import { DeleteMovieModal } from "../Modal/DeleteMovie";
-import { MovieModal } from "../Modal/MovieModal";
+import { useClickOutside } from "../../hooks/useClickOutside";
+import { DeleteMovieModal } from "../modal/DeleteMovie";
+import { MovieModal } from "../modal/MovieModal";
 import { joinItems, getYear } from "../../utils/movieUtils";
 import MovieButton from '../../assets/images/movie-menu-btn.png';
 
 export const MovieItem = ({ movieId, title, release_date, genres, poster_path }) => {
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [isMenuActive, setMenuActive] = useState(false);
     const [isEditActive, setEditActive] = useState(false);
     const [isDeleteActive, setDeleteActive] = useState(false);
 
     const loadMovieDetails = () => {
-        batch(() => {
-            dispatch(getMovieById(movieId));
-            dispatch(actions.openMovieDetails());
-        });
+        dispatch(getMovieById(movieId));
+        navigate(`?movie=${movieId}`);
     };
 
     const handleMenuToggle = () => {
@@ -39,7 +38,7 @@ export const MovieItem = ({ movieId, title, release_date, genres, poster_path })
 
     return (
         <div className="item">
-            <img className="movie-pic" src={poster_path} onClick={loadMovieDetails}></img>
+            <img className="movie-pic" src={poster_path} onClick={loadMovieDetails} />
             <div className="movie-btn" onClick={handleMenuToggle}>
                 <img className="movie-btn-pic" src={MovieButton} />
                 <div className="menu-dot-1" />

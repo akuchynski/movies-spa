@@ -33,6 +33,13 @@ export const getMoviesByRating = () => (dispatch) => {
         .catch(({ message }) => dispatch(actions.getMoviesError(message)));
 };
 
+export const getMoviesByParams = (searchQuery, genreQuery, sortQuery, sortOrder = 'desc') => (dispatch) => {
+    dispatch(actions.getMoviesRequest());
+    api.get('/', { params: { searchBy: 'title', search: searchQuery, filter: genreQuery, sortBy: sortQuery, sortOrder: sortOrder } })
+        .then(({ data }) => dispatch(actions.getMoviesSuccess(data)))
+        .catch(({ message }) => dispatch(actions.getMoviesError(message)));
+};
+
 export const getMovieById = (id) => (dispatch) => {
     dispatch(actions.getMovieRequest());
     api.get('/' + id)

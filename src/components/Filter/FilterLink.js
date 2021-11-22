@@ -1,24 +1,29 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getMoviesByGenre } from "../../store/thunks";
-import actions from "../../store/actions";
+import React from "react";
+import { useDispatch } from "react-redux";
+import { Link, useParams, useSearchParams } from "react-router-dom";
+import { getMoviesByParams } from "../../store/thunks";
 
 export const FilterLink = ({ genre }) => {
 
     const dispatch = useDispatch();
-    const { activeFilter } = useSelector(state => state.movies);
+    const { searchQuery } = useParams();
+    const [searchParams] = useSearchParams();
 
-    useEffect(() => {
-        if (genre === 'All')
-            dispatch(actions.setActiveFilter(genre));
-    }, []);
+    const genres = searchParams.getAll("genre");
+    const isActive = genres.includes(genre);
 
     const handleMenuClick = () => {
-        dispatch(actions.setActiveFilter(genre));
-        dispatch(getMoviesByGenre(genre));
+        dispatch(getMoviesByParams(searchQuery, genre));
     };
 
     return (
-        <li><a href="#" className={activeFilter === genre ? "active" : undefined} onClick={handleMenuClick}>{genre}</a></li>
+        <Link
+            to={`?genre=${genre}`}
+            key={genre}
+            className={isActive ? "active" : undefined}
+            onClick={handleMenuClick}
+        >
+            {genre}
+        </Link>
     );
 };

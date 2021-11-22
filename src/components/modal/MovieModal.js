@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
-import { useClickOutside } from "../../hooks/useClickOutside";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import Select from "react-select";
 import { useDispatch, useSelector } from "react-redux";
-import { addMovie, getMovieById, updateMovie } from "../../store/thunks";
-import { genres } from '../../utils/genres';
-import { getOptions, getGenres } from "../../utils/movieUtils";
+import Select from "react-select";
 import * as Yup from 'yup';
+import { useClickOutside } from "../../hooks/useClickOutside";
+import { addMovie, getMovieById, updateMovie } from "../../store/thunks";
+import { getOptions, getGenres } from "../../utils/movieUtils";
+import { genres } from '../../utils/genres';
 
 export const MovieModal = ({ movieId, handleClose }) => {
 
@@ -62,7 +62,6 @@ export const MovieModal = ({ movieId, handleClose }) => {
                         if (!movieId) {
                             dispatch(addMovie({ ...values, genres: getGenres(values.genres) }));
                         } else {
-                            console.log(values);
                             dispatch(updateMovie({ ...values, id: movieId, genres: getGenres(values.genres) }));
                         }
                         setSubmitting(false);
