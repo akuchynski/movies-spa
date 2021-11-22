@@ -1,7 +1,7 @@
 import React from "react";
+import { Outlet } from "react-router-dom";
 import { Content } from "./Content";
 import { ErrorBoundary } from "./ErrorBoundary";
-import { Outlet } from "react-router-dom";
 import "./styles.css";
 
 export const Main = () => {

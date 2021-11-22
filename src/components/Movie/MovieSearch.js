@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useFormik } from 'formik';
-import { MovieModal } from "../modal/MovieModal";
-import { getMoviesByRating, getMoviesByParams } from "../../store/thunks";
 import { useDispatch } from "react-redux";
 import { useParams, useSearchParams, useNavigate } from "react-router-dom";
+import { getMoviesByRating, getMoviesByParams } from "../../store/thunks";
+import { useFormik } from 'formik';
+import { MovieModal } from "../modal/MovieModal";
 
 export const MovieSearch = () => {
 
     const dispatch = useDispatch();
-    const params = useParams();
-    const { searchQuery } = params;
+    const { searchQuery } = useParams();
     const [searchParams] = useSearchParams();
     const navigate = useNavigate();
 

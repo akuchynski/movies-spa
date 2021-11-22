@@ -1,6 +1,6 @@
 import React from "react";
-import { useClickOutside } from "../../hooks/useClickOutside";
 import { useDispatch, batch } from "react-redux";
+import { useClickOutside } from "../../hooks/useClickOutside";
 import { deleteMovie, getMovies } from "../../store/thunks";
 import actions from "../../store/actions";
 

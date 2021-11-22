@@ -1,27 +1,28 @@
 import React, { useState, useEffect } from "react";
+import { useParams, useNavigate, useSearchParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getMoviesByParams } from "../../store/thunks";
 import { FilterLink } from './FilterLink';
 import { genres } from '../../utils/genres';
 import { filters } from '../../utils/filters';
-import { useParams, useNavigate, useSearchParams } from "react-router-dom";
 
 export const Filter = () => {
 
     const dispatch = useDispatch();
-    const params = useParams();
     const navigate = useNavigate();
+    const { searchQuery } = useParams();
     const [searchParams] = useSearchParams();
     const [selectedOption, setSelectedOption] = useState(filters[0].value);
+    const filterOption = filters.find(filter => filter.value === searchParams.get("sortBy"));
 
     useEffect(() => {
         if (searchParams.get("sortBy"))
-            setSelectedOption(filters.find(filter => filter.value === searchParams.get("sortBy")).value);
+            setSelectedOption(filterOption.value);
     }, []);
 
     const handleChange = (event) => {
         setSelectedOption(event.target.value);
-        dispatch(getMoviesByParams(params.searchQuery, searchParams.get("genre"), event.target.value));
+        dispatch(getMoviesByParams(searchQuery, searchParams.get("genre"), event.target.value));
         navigate(`?sortBy=${event.target.value}`);
     };
 
@@ -35,8 +36,8 @@ export const Filter = () => {
             <div className="date-filter">
                 <span className="sort">SORT BY</span>
                 <select value={selectedOption} onChange={handleChange}>
-                    {filters.map(item => (
-                        <option key={item.value} value={item.value}>{item.label}</option>
+                    {filters.map(({ value, label }) => (
+                        <option key={value} value={value}>{label}</option>
                     ))}
                 </select>
             </div>

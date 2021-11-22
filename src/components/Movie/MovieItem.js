@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { getMovieById } from "../../store/thunks";
-import { useClickOutside } from "../../hooks/useClickOutside";
 import PropTypes from 'prop-types';
+import { useClickOutside } from "../../hooks/useClickOutside";
 import { DeleteMovieModal } from "../modal/DeleteMovie";
 import { MovieModal } from "../modal/MovieModal";
 import { joinItems, getYear } from "../../utils/movieUtils";
-import { useNavigate } from "react-router-dom";
 import MovieButton from '../../assets/images/movie-menu-btn.png';
 
 export const MovieItem = ({ movieId, title, release_date, genres, poster_path }) => {

@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useSearchParams } from "react-router-dom";
+import { getMovieById } from "../store/thunks";
 import { MovieDetails } from "./Movie/MovieDetails";
 import { MovieSearch } from "./Movie/MovieSearch";
-import { getMovieById } from "../store/thunks";
-import { useSearchParams } from "react-router-dom";
 
 export const HeaderMenu = () => {
 

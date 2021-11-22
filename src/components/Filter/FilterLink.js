@@ -1,13 +1,12 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { getMoviesByParams } from "../../store/thunks";
 import { Link, useParams, useSearchParams } from "react-router-dom";
+import { getMoviesByParams } from "../../store/thunks";
 
 export const FilterLink = ({ genre }) => {
 
     const dispatch = useDispatch();
-    const params = useParams();
-    const { searchQuery } = params;
+    const { searchQuery } = useParams();
     const [searchParams] = useSearchParams();
 
     const genres = searchParams.getAll("genre");

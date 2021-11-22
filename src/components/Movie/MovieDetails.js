@@ -1,8 +1,8 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import actions from "../../store/actions";
 import { joinItems } from "../../utils/movieUtils";
-import { useNavigate } from "react-router-dom";
 
 export const MovieDetails = () => {
 
