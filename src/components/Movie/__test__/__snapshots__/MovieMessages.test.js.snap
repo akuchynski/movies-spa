@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`movie messages tests should render movie messages component 1`] = `
+<DocumentFragment>
+  <h3>
+    Loading movies...
+  </h3>
+</DocumentFragment>
+`;

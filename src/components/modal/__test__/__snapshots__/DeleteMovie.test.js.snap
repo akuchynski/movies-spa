@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`movie delete modal component tests should render movie modal component 1`] = `
+<DocumentFragment>
+  <div
+    class="modal"
+  >
+    <div
+      class="delete-movie-modal"
+    >
+      <span
+        class="close"
+      >
+        ✕
+      </span>
+      <h2>
+        DELETE MOVIE
+      </h2>
+      <div
+        class="delete-text"
+      >
+        Are you sure you want to delete this movie?
+      </div>
+      <form>
+        <div
+          class="modal-button"
+        >
+          <button
+            class="submit-button"
+          >
+            CONFIRM
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</DocumentFragment>
+`;
