@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { getMovieById } from "../../store/thunks";
 import PropTypes from 'prop-types';
 import { useClickOutside } from "../../hooks/useClickOutside";
@@ -12,14 +11,12 @@ import MovieButton from '../../assets/images/movie-menu-btn.png';
 export const MovieItem = ({ movieId, title, release_date, genres, poster_path }) => {
 
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     const [isMenuActive, setMenuActive] = useState(false);
     const [isEditActive, setEditActive] = useState(false);
     const [isDeleteActive, setDeleteActive] = useState(false);
 
     const loadMovieDetails = () => {
         dispatch(getMovieById(movieId));
-        navigate(`?movie=${movieId}`);
     };
 
     const handleMenuToggle = () => {
