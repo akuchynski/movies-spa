@@ -1,28 +1,29 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { getMoviesByParams } from "../../store/thunks";
 
-export const FilterLink = ({ genre }) => {
+export const FilterLink = ({ genreValue }) => {
 
     const dispatch = useDispatch();
-
-    const isActive = true;
+    const router = useRouter();
+    const { name: [name] = [], genre } = router.query;
+    const isActive = genreValue === genre;
 
     const handleMenuClick = () => {
-        dispatch(getMoviesByParams(searchQuery, genre));
+        dispatch(getMoviesByParams(name, genre));
     };
 
     return (
-        <ul>
+        <li key={genreValue} className={isActive ? "active" : undefined}>
             <Link
-                href={`?genre=${genre}`}
-                key={genre}
-                class={isActive ? "active" : undefined}
+                href={`${name}?genre=${genreValue}`}
+                key={genreValue}
                 onClick={handleMenuClick}
             >
-                {genre}
+                {genreValue}
             </Link>
-        </ul>
+        </li>
     );
 };

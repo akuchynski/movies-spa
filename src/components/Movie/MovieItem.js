@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getMovieById } from "../../store/thunks";
+import Image from 'next/image'
 import PropTypes from 'prop-types';
 import { useClickOutside } from "../../hooks/useClickOutside";
 import { DeleteMovieModal } from "../modal/DeleteMovie";
 import { MovieModal } from "../modal/MovieModal";
 import { joinItems, getYear } from "../../utils/movieUtils";
-import MovieButton from '../../assets/images/movie-menu-btn.png';
+import movieButtonPic from '../../../public/images/movie-menu-btn.png';
 
 export const MovieItem = ({ movieId, title, release_date, genres, poster_path }) => {
 
@@ -37,7 +38,7 @@ export const MovieItem = ({ movieId, title, release_date, genres, poster_path })
         <div className="item">
             <img className="movie-pic" src={poster_path} onClick={loadMovieDetails} />
             <div className="movie-btn" onClick={handleMenuToggle}>
-                <img className="movie-btn-pic" src={MovieButton} />
+                <div className="movie-btn-pic"> <Image src={movieButtonPic}/></div>
                 <div className="menu-dot-1" />
                 <div className="menu-dot-2" />
                 <div className="menu-dot-3" />
