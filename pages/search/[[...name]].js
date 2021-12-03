@@ -11,8 +11,8 @@ export default function Search({ movies }) {
     return (
         <div>
             <Head>
-                <title>Query search</title>
-                <meta name="description" content="Query search" />
+                <title>Search movie</title>
+                <meta name="description" content="Search movie" />
             </Head>
             <Provider store={store}>
                 <ErrorBoundary>
@@ -29,11 +29,10 @@ export default function Search({ movies }) {
 
 export async function getServerSideProps({ query }) {
 
-    const url = 'http://localhost:4000/movies/';
     const { name, genre, sortBy = 'vote_average', sortOrder = 'desc' } = query;
     const [searchQuery] = name || [];
 
-    const { data: { data } } = await axios.get(url, {
+    const { data: { data } } = await axios.get(process.env.SERVER_URL, {
         params: {
             searchBy: 'title',
             search: searchQuery,

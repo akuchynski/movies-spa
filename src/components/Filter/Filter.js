@@ -9,8 +9,8 @@ import { filters } from '../../utils/filters';
 export const Filter = () => {
 
     const dispatch = useDispatch();
-    const router = useRouter();
-    const { name: [name] = [], genre } = router.query;
+    const { query } = useRouter();
+    const { name: [name] = [''], genre } = query;
 
     const [selectedOption, setSelectedOption] = useState(filters[0].value);
 
@@ -23,7 +23,7 @@ export const Filter = () => {
         <div className="filter">
             <div className="genre-filter">
                 <ul>
-                    {genres.map(({ value, label }) => (<FilterLink key={value} genreValue={value} />))}
+                    {genres.map(({ value }) => (<FilterLink key={value} genreValue={value} />))}
                 </ul>
             </div>
             <div className="date-filter">

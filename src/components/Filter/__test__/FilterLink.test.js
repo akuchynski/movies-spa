@@ -1,9 +1,8 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import { FilterLink } from "../FilterLink";
 import { Provider } from 'react-redux';
 import { store } from "../../../store/configureStore";
-import { MemoryRouter } from "react-router-dom";
+import { FilterLink } from "../FilterLink";
 
 describe('filter links tests', () => {
     const genreValue = "Horror";

@@ -20,7 +20,7 @@ describe('movie reducer tests', () => {
     it('should perform movies request action', () => {
         const action = actions.getMoviesRequest();
         const newState = movieReducer(initialState, action);
-        expect(newState.isLoading).toBe(true);
+        expect(newState.isLoading).toBeTruthy();
     });
 
     it('should perform movies success action', () => {
@@ -36,11 +36,16 @@ describe('movie reducer tests', () => {
         expect(newState.errorMessage).toBe(errorMessage);
     });
 
-    it('should perform movie request action', () => {
-        const errorMessage = "Test movies error";
+    it('should set movie details to null before new request', () => {
         const action = actions.getMovieRequest();
         const newState = movieReducer({ ...initialState, movieDetails: movie, errorMessage: errorMessage }, action);
         expect(newState.movieDetails).toBeNull();
+    });
+
+    it('should set error message to null before new request', () => {
+        const errorMessage = "Test movies error";
+        const action = actions.getMovieRequest();
+        const newState = movieReducer({ ...initialState, movieDetails: movie, errorMessage: errorMessage }, action);
         expect(newState.errorMessage).toBeNull();
     });
 
@@ -60,13 +65,13 @@ describe('movie reducer tests', () => {
     it('should perform open movie details action', () => {
         const action = actions.openMovieDetails();
         const newState = movieReducer(initialState, action);
-        expect(newState.isDetailsOpen).toBe(true);
+        expect(newState.isDetailsOpen).toBeTruthy();
     });
 
     it('should perform close movie details action', () => {
         const action = actions.closeMovieDetails();
         const newState = movieReducer({ ...initialState, movieDetails: movie, isDetailsOpen: true }, action);
-        expect(newState.isDetailsOpen).toBe(false);
+        expect(newState.isDetailsOpen).toBeFalsy();
         expect(newState.movieDetails).toBeNull();
     });
 

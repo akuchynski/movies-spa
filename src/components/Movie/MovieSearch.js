@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { useDispatch } from "react-redux";
-import { getMoviesByRating, getMoviesByParams, getMovies } from "../../store/thunks";
+import { useRouter } from 'next/router';
 import { useFormik } from 'formik';
+import { getMoviesByRating, getMoviesByParams } from "../../store/thunks";
 import { MovieModal } from "../modal/MovieModal";
 
 export const MovieSearch = () => {
 
     const dispatch = useDispatch();
+    const { query } = useRouter();
+    const { name: [name] = []} = query;
 
     const [isAddActive, setAddActive] = useState(false);
 
@@ -15,7 +18,9 @@ export const MovieSearch = () => {
     };
 
     const formik = useFormik({
-        initialValues: {},
+        initialValues: {
+            searchQuery : name,
+        },
         onSubmit: ({ searchQuery }) => {
             if (searchQuery) {
                 dispatch(getMoviesByParams(searchQuery));
