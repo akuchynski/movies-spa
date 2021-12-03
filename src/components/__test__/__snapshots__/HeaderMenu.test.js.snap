@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`content components tests should render app component 1`] = `
+<DocumentFragment>
+  <div
+    class="header"
+  >
+    <div
+      class="logo"
+    >
+      movie
+      <span>
+        roulette
+      </span>
+    </div>
+    <button
+      class="add-button"
+    >
+      + ADD MOVIE
+    </button>
+    <div
+      class="search"
+    >
+      <h1>
+        FIND YOUR MOVIE
+      </h1>
+      <form>
+        <input
+          autocomplete="off"
+          id="searchQuery"
+          name="searchQuery"
+          placeholder="What do you want to watch?"
+          type="text"
+          value=""
+        />
+        <button
+          class="search-button"
+          type="submit"
+        >
+          SEARCH
+        </button>
+      </form>
+    </div>
+  </div>
+</DocumentFragment>
+`;

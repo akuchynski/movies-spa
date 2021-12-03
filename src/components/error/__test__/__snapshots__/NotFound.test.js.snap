@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`error components tests should render not found component 1`] = `
+<DocumentFragment>
+  <div
+    class="content"
+  >
+    <h2>
+      Page not found!
+    </h2>
+  </div>
+</DocumentFragment>
+`;

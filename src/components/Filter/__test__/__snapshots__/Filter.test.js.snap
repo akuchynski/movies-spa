@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`filter tests should render filter component 1`] = `
+<DocumentFragment>
+  <div
+    class="filter"
+  >
+    <div
+      class="genre-filter"
+    >
+      <ul>
+        <li>
+          <a
+            href="/?genre=Adventure"
+          >
+            Adventure
+          </a>
+        </li>
+        <li>
+          <a
+            href="/?genre=Comedy"
+          >
+            Comedy
+          </a>
+        </li>
+        <li>
+          <a
+            href="/?genre=Crime"
+          >
+            Crime
+          </a>
+        </li>
+        <li>
+          <a
+            href="/?genre=Documentary"
+          >
+            Documentary
+          </a>
+        </li>
+        <li>
+          <a
+            href="/?genre=Fantasy"
+          >
+            Fantasy
+          </a>
+        </li>
+        <li>
+          <a
+            href="/?genre=Horror"
+          >
+            Horror
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div
+      class="date-filter"
+    >
+      <span
+        class="sort"
+      >
+        SORT BY
+      </span>
+      <select>
+        <option
+          value="vote_average"
+        >
+          RATING
+        </option>
+        <option
+          value="release_date"
+        >
+          DATE
+        </option>
+      </select>
+    </div>
+  </div>
+</DocumentFragment>
+`;

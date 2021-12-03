@@ -1,0 +1,20 @@
+module.exports = {
+  collectCoverage: true,
+  verbose: true,
+  collectCoverageFrom: [
+    '**/*.{js,jsx}',
+    '!jest.config.js',
+    '!webpack.config.js',
+    '!**/node_modules/**',
+    '!build/**',
+    '!coverage/**',
+    '!src/index.js',
+    '!src/components/App.js',
+    '!src/components/Main.js',
+    '!src/components/Content.js',
+    '!src/components/ErrorBoundary.js',
+    '!cypress/**',
+  ],
+  testEnvironment: 'jsdom',
+  modulePathIgnorePatterns: ["cypress"],
+}
