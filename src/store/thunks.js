@@ -2,7 +2,7 @@ import axios from "axios";
 import actions from "./actions";
 
 const api = axios.create({
-    baseURL: 'http://localhost:4000/movies/'
+    baseURL: process.env.SERVER_URL
 });
 
 export const getMovies = () => (dispatch) => {

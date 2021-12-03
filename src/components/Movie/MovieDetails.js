@@ -1,19 +1,16 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import actions from "../../store/actions";
 import { joinItems } from "../../utils/movieUtils";
 
 export const MovieDetails = () => {
 
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     const { movieDetails } = useSelector(state => state.movies);
     const { poster_path, title, vote_average, genres, release_date, runtime, overview } = movieDetails;
 
     const closeDetails = () => {
         dispatch(actions.closeMovieDetails());
-        navigate("/search");
     };
 
     return (

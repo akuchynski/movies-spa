@@ -17,7 +17,7 @@ body {
   font-family: "Montserrat", Helvetica;
 }
 
-#root {
+#root, #__next {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;

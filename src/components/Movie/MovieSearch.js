@@ -1,16 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from "react-redux";
-import { useParams, useSearchParams, useNavigate } from "react-router-dom";
-import { getMoviesByRating, getMoviesByParams } from "../../store/thunks";
+import { useRouter } from 'next/router';
 import { useFormik } from 'formik';
+import { getMoviesByRating, getMoviesByParams } from "../../store/thunks";
 import { MovieModal } from "../modal/MovieModal";
 
 export const MovieSearch = () => {
 
     const dispatch = useDispatch();
-    const { searchQuery } = useParams();
-    const [searchParams] = useSearchParams();
-    const navigate = useNavigate();
+    const { query } = useRouter();
+    const { name: [name] = []} = query;
 
     const [isAddActive, setAddActive] = useState(false);
 
@@ -18,21 +17,15 @@ export const MovieSearch = () => {
         setAddActive(!isAddActive);
     };
 
-    useEffect(() => {
-        dispatch(getMoviesByParams(searchQuery, searchParams.get("genre"), searchParams.get("sortBy")));
-    }, []);
-
     const formik = useFormik({
         initialValues: {
-            searchQuery: searchQuery
+            searchQuery : name,
         },
         onSubmit: ({ searchQuery }) => {
             if (searchQuery) {
                 dispatch(getMoviesByParams(searchQuery));
-                navigate(`/search/${searchQuery}`);
             } else {
                 dispatch(getMoviesByRating());
-                navigate("/search");
             }
         },
     });
