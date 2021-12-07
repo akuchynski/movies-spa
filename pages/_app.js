@@ -1,7 +1,8 @@
 import "../src/components/styles.css";
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />;
-}
+export default function MyApp({ Component, pageProps }) {
 
-export default MyApp;
+  const getLayout = Component.getLayout || ((page) => page);
+
+  return getLayout(<Component {...pageProps} />);
+}
