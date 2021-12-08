@@ -9,8 +9,8 @@ export const FilterLink = ({ genreValue }) => {
 
     const dispatch = useDispatch();
     const router = useRouter();
-    const { name: [name] = [''], genre } = router.query;
-    let filterClassName = classNames({ active : genreValue === genre})
+    const { name: [name] = [''], genre = '' } = router.query;
+    let filterClassName = classNames({ active: genreValue === genre });
 
     const handleMenuClick = () => {
         dispatch(getMoviesByParams(name, genre));
