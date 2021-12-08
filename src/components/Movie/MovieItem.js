@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getMovieById } from "../../store/thunks";
-import Image from 'next/image'
+import Image from 'next/image';
 import PropTypes from 'prop-types';
 import { useClickOutside } from "../../hooks/useClickOutside";
 import { DeleteMovieModal } from "../modal/DeleteMovie";
 import { MovieModal } from "../modal/MovieModal";
+import ImageFallback from "../../components/Image/ImageFallback";
 import { joinItems, getYear } from "../../utils/movieUtils";
 import movieButtonPic from '../../../public/images/movie-menu-btn.png';
+import fallbackPic from '../../../public/images/fallback.png';
 
 export const MovieItem = ({ movieId, title, release_date, genres, poster_path }) => {
 
@@ -36,9 +38,17 @@ export const MovieItem = ({ movieId, title, release_date, genres, poster_path })
 
     return (
         <div className="item">
-            <img className="movie-pic" src={poster_path} onClick={loadMovieDetails} />
+            <ImageFallback
+                key={movieId}
+                width="322px"
+                height="455px"
+                className="movie-pic"
+                src={`${poster_path}`}
+                fallbackSrc={fallbackPic}
+                onClick={loadMovieDetails}
+            />
             <div className="movie-btn" onClick={handleMenuToggle}>
-                <div className="movie-btn-pic"> <Image src={movieButtonPic}/></div>
+                <div className="movie-btn-pic"> <Image src={movieButtonPic} /></div>
                 <div className="menu-dot-1" />
                 <div className="menu-dot-2" />
                 <div className="menu-dot-3" />

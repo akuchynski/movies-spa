@@ -1,7 +1,17 @@
 import React from "react";
+import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
+import ImageFallback from "../../components/Image/ImageFallback";
 import actions from "../../store/actions";
 import { joinItems } from "../../utils/movieUtils";
+import fallbackPic from '../../../public/images/fallback.png';
+
+const Wrapper = styled.div`
+    width: 100%;
+    > div {
+    position: unset !important;
+    }
+`;
 
 export const MovieDetails = () => {
 
@@ -22,7 +32,15 @@ export const MovieDetails = () => {
                 <span className="search-menu-icon" onClick={closeDetails}></span>
             </div>
             <div className="movie-full-info">
-                <img className="movie-pic" src={poster_path}></img>
+                <Wrapper>
+                    <ImageFallback
+                        width="322"
+                        height="455"
+                        className="movie-pic"
+                        src={`${poster_path}`}
+                        fallbackSrc={fallbackPic}
+                    />
+                </Wrapper>
                 <div className="description">
                     <div className="title">
                         <div className="name">{title}</div>
