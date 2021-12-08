@@ -10,7 +10,7 @@ export const Filter = () => {
 
     const dispatch = useDispatch();
     const { query } = useRouter();
-    const { name: [name] = [''], genre } = query;
+    const { name: [name] = [''], genre = '' } = query;
 
     const [selectedOption, setSelectedOption] = useState(filters[0].value);
 

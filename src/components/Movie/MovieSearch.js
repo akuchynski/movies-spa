@@ -8,8 +8,9 @@ import { MovieModal } from "../modal/MovieModal";
 export const MovieSearch = () => {
 
     const dispatch = useDispatch();
+    const router = useRouter();
     const { query } = useRouter();
-    const { name: [name] = []} = query;
+    const { name: [name] = [] } = query;
 
     const [isAddActive, setAddActive] = useState(false);
 
@@ -19,13 +20,19 @@ export const MovieSearch = () => {
 
     const formik = useFormik({
         initialValues: {
-            searchQuery : name,
+            searchQuery: name,
         },
         onSubmit: ({ searchQuery }) => {
             if (searchQuery) {
                 dispatch(getMoviesByParams(searchQuery));
+                router.push({
+                    pathname: '/search/[searchQuery]',
+                    query: { searchQuery },
+                    shallow: true,
+                });
             } else {
                 dispatch(getMoviesByRating());
+                router.push("/search");
             }
         },
     });
